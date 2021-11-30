@@ -10,6 +10,7 @@
 button {
     outline: none;
     border: none;
+    cursor: pointer;
 }
 
 .main-title {
@@ -63,4 +64,9 @@ button {
     background: #a0d4ff;
     font-weight: 600;
     font-size: 18px;
+}
+
+.button:hover {
+    transition: 0.3s;
+    transform: scale(1.05);
 }
