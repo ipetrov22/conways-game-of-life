@@ -7,14 +7,16 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-body {
+.main-title{
+    margin-top: 10px;
+    text-align: center;
 }
 
 .grid {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .grid-row {
