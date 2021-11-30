@@ -1,4 +1,20 @@
-const state = [
+const initalState = [
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+];
+
+let state = [
+    [0, 0, 0, 0, 0],
+    [0, 0, 1, 1, 0],
+    [0, 0, 1, 1, 0],
+    [0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 0],
+];
+
+let transformedState = [
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0],
@@ -49,8 +65,25 @@ const getTransformedCell = (xIndex, yIndex) => {
         return cell;
     }
 };
+let interval;
+interval = setInterval(() => {
+    if (!state.some((row) => row.includes(1))) {
+        clearInterval(interval);
+        return;
+    }
 
-console.log(getTransformedCell(1, 1));
+    for (let y = 0; y < state.length; y++) {
+        const row = state[y];
+        for (let x = 0; x < row.length; x++) {
+            transformedState[y][x] = getTransformedCell(x, y);
+        }
+    }
+    state = JSON.parse(JSON.stringify(transformedState));
+    transformedState = JSON.parse(JSON.stringify(initalState));
+    console.log(state.map(x => x.join(' ')).join('\n'));
+    console.log('\n===============================\n')
+}, 1000);
+
 /* 
 a b c
 h 0 d
