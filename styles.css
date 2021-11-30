@@ -7,7 +7,12 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-.main-title{
+button {
+    outline: none;
+    border: none;
+}
+
+.main-title {
     margin-top: 10px;
     text-align: center;
 }
@@ -25,11 +30,11 @@
     border-right: 1px solid black;
 }
 
-.grid-row:nth-child(1){
+.grid-row:nth-child(1) {
     border-top: 1px solid black;
 }
 
-.grid-row:last-child{
+.grid-row:last-child {
     border-bottom: 1px solid black;
 }
 
@@ -42,4 +47,20 @@
 
 .grid-cell.active {
     background: #ffc90f;
+}
+
+.controls-container{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.button {
+    width: 90px;
+    padding: 10px;
+    border-radius: 40px;
+    background: #a0d4ff;
+    font-weight: 600;
+    font-size: 18px;
 }

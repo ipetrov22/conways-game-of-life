@@ -5,13 +5,29 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css"
+            integrity="sha512-BnbUDfEUfV0Slx6TunuB042k9tuKe3xrD6q4mg5Ed72LTgzDIcLPxg6yI2gcMFRyomt+yJJxE+zJwNmxki6/RA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
         <title>Conway's Game of Life</title>
     </head>
     <body>
         <div class="main">
             <h1 class="main-title">Conway's Game of Life</h1>
             <div class="grid"></div>
+            <div class="controls-container">
+                <button type="button" class="play-pause-button button">
+                    PLAY
+                </button>
+
+                <button type="button" class="stop-button button">
+                    STOP
+                </button>
+            </div>
         </div>
     </body>
-    <script src="app.js"></script>
+    <script type="module" src="app.js"></script>
 </html>

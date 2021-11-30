@@ -1,6 +1,7 @@
+import { handleCellClick } from './helpers/eventHandlers.js';
 (function () {
     const grid = document.querySelector('.grid');
-    console.log(grid)
+    let status = 'stopped'
 
     const createElement = (tagName, className) => {
         const el = document.createElement(tagName);
@@ -12,6 +13,7 @@
         const row = createElement('div', 'grid-row');
         for (let x = 0; x < 20; x++) {
             const cell = createElement('span', `grid-cell cell-${x}-${y}`);
+            cell.addEventListener('click', (e) => handleCellClick(e, status));
             row.appendChild(cell);
         }
         grid.appendChild(row);
