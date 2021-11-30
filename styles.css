@@ -1,0 +1,43 @@
+*,
+*:before,
+*:after {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+}
+
+.grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.grid-row {
+    display: flex;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.grid-row:nth-child(1){
+    border-top: 1px solid black;
+}
+
+.grid-row:last-child{
+    border-bottom: 1px solid black;
+}
+
+.grid-cell {
+    background: #a0d4ff;
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+}
+
+.grid-cell.active {
+    background: #ffc90f;
+}
