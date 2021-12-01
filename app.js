@@ -1,4 +1,8 @@
-import { handleCellClick, handlePlayClick } from './helpers/eventHandlers.js';
+import {
+    handleCellClick,
+    handlePlayClick,
+    handleStopClick,
+} from './helpers/eventHandlers.js';
 
 (function () {
     const grid = document.querySelector('.grid');
@@ -18,7 +22,12 @@ import { handleCellClick, handlePlayClick } from './helpers/eventHandlers.js';
         status = newStatus;
     };
 
-    playBtn.addEventListener('click', (e) => handlePlayClick(e, status, updateStatus));
+    playBtn.addEventListener('click', (e) =>
+        handlePlayClick(e, status, updateStatus)
+    );
+    stopBtn.addEventListener('click', (e) =>
+        handleStopClick(e, state, status, updateStatus)
+    );
 
     for (let y = 0; y < 20; y++) {
         const row = createElement('div', 'grid-row');

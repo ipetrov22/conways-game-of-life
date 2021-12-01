@@ -65,6 +65,12 @@ const getTransformedCell = (xIndex, yIndex) => {
         return cell;
     }
 };
+
+export const resetState = (state) => {
+    state.forEach((row) => {
+        row.forEach((x) => (row[x] = 0));
+    });
+};
 // let interval;
 // interval = setInterval(() => {
 //     if (!state.some((row) => row.includes(1))) {
