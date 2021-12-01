@@ -43,38 +43,5 @@ export const getTransformedCell = (xIndex, yIndex, state) => {
 };
 
 export const resetState = (state) => {
-    return state.map(row => row.fill(0));
+    return state.map((row) => row.fill(0));
 };
-// let interval;
-// interval = setInterval(() => {
-//     if (!state.some((row) => row.includes(1))) {
-//         clearInterval(interval);
-//         return;
-//     }
-
-//     for (let y = 0; y < state.length; y++) {
-//         const row = state[y];
-//         for (let x = 0; x < row.length; x++) {
-//             transformedState[y][x] = getTransformedCell(x, y);
-//         }
-//     }
-//     state = JSON.parse(JSON.stringify(transformedState));
-//     transformedState = JSON.parse(JSON.stringify(initalState));
-//     console.log(state.map((x) => x.join(' ')).join('\n'));
-//     console.log('\n===============================\n');
-// }, 1000);
-
-/* 
-a b c
-h 0 d
-g f e
-
-a = (x-1; y-1)
-b = (x; y-1)
-c = (x+1; y-1)
-d = (x+1; y)
-e = (x+1; y+1)
-f = (x; y+1)
-g = (x-1; y+1)
-h = (x-1; y)
-*/

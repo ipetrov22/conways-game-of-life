@@ -62,7 +62,7 @@ import { resetState, getTransformedCell } from './helpers/gridHelpers.js';
             }
             state = JSON.parse(JSON.stringify(transformedState));
             transformedState = resetState(transformedState);
-        }, 750);
+        }, 500);
     };
 
     const pause = () => {
