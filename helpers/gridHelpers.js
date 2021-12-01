@@ -1,27 +1,3 @@
-const initalState = [
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-];
-
-let state = [
-    [0, 0, 0, 0, 0],
-    [0, 0, 1, 1, 0],
-    [0, 0, 1, 1, 0],
-    [0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 0],
-];
-
-let transformedState = [
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-];
-
 export const getCell = (xIndex, yIndex, state) => {
     if (
         xIndex < 0 ||
@@ -35,8 +11,8 @@ export const getCell = (xIndex, yIndex, state) => {
     return state[yIndex][xIndex];
 };
 
-const getTransformedCell = (xIndex, yIndex) => {
-    const cell = getCell(xIndex, yIndex);
+export const getTransformedCell = (xIndex, yIndex, state) => {
+    const cell = getCell(xIndex, yIndex, state);
 
     const liveNeighbours = [
         [-1, -1],
@@ -48,7 +24,7 @@ const getTransformedCell = (xIndex, yIndex) => {
         [-1, 1],
         [-1, 0],
     ]
-        .map((cords) => getCell(xIndex + cords[0], yIndex + cords[1]))
+        .map((cords) => getCell(xIndex + cords[0], yIndex + cords[1], state))
         .reduce((acc, cur) => acc + cur);
 
     if (cell) {
@@ -67,9 +43,7 @@ const getTransformedCell = (xIndex, yIndex) => {
 };
 
 export const resetState = (state) => {
-    state.forEach((row) => {
-        row.forEach((x) => (row[x] = 0));
-    });
+    return state.map(row => row.fill(0));
 };
 // let interval;
 // interval = setInterval(() => {
