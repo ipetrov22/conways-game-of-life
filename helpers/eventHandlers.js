@@ -10,3 +10,13 @@ export const handleCellClick = (e, status, state) => {
         state[y][x] = cellValue ? 0 : 1;
     }
 };
+
+export const handlePlayClick = (e, status, updateStatus) => {
+    if (status === 'stopped' || status === 'paused') {
+        updateStatus('playing');
+        e.target.textContent = 'PAUSE';
+    } else if (status === 'playing') {
+        updateStatus('paused');
+        e.target.textContent = 'PLAY';
+    }
+};
