@@ -1,0 +1,23 @@
+{
+  "name": "conways-game-of-life",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ipetrov22/conways-game-of-life.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ipetrov22/conways-game-of-life/issues"
+  },
+  "homepage": "https://github.com/ipetrov22/conways-game-of-life#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
