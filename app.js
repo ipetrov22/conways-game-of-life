@@ -43,6 +43,9 @@ import { resetState, getTransformedCell } from './helpers/gridHelpers.js';
         interval = setInterval(() => {
             if (!state.some((row) => row.includes(1))) {
                 clearInterval(interval);
+                playBtn.textContent = 'PLAY';
+                stopBtn.disabled = true;
+                status = 'stopped';
                 return;
             }
 
