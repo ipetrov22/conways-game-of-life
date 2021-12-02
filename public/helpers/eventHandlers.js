@@ -1,6 +1,6 @@
 import { getCell, resetState } from './gridHelpers.js';
 
-export const handleCellClick = (e, status, state) => {
+export const handleCellClick = (e, status, state, activeCells) => {
     if (status === 'stopped') {
         const el = e.target;
         el.classList.toggle('active');
@@ -8,6 +8,12 @@ export const handleCellClick = (e, status, state) => {
         const [x, y] = el.classList[1].split('-').slice(1);
         const cellValue = getCell(x, y, state);
         state[y][x] = cellValue ? 0 : 1;
+
+        if(!cellValue){
+            activeCells.add(`${x}-${y}`);
+        } else {
+            activeCells.delete(`${x}-${y}`);
+        }
     }
 };
 

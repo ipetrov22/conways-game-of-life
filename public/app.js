@@ -14,6 +14,8 @@ import { resetState, getTransformedCell } from './helpers/gridHelpers.js';
     let interval;
     let state = [];
     let transformedState = [];
+    const activeCells = new Set();
+    const cellsToCheck = new Set();
 
     const createElement = (tagName, className) => {
         const el = document.createElement(tagName);
@@ -26,7 +28,7 @@ import { resetState, getTransformedCell } from './helpers/gridHelpers.js';
         for (let x = 0; x < 20; x++) {
             const cell = createElement('span', `grid-cell cell-${x}-${y}`);
             cell.addEventListener('click', (e) =>
-                handleCellClick(e, status, state)
+                handleCellClick(e, status, state, activeCells)
             );
             row.appendChild(cell);
         }
@@ -46,25 +48,57 @@ import { resetState, getTransformedCell } from './helpers/gridHelpers.js';
                 playBtn.textContent = 'PLAY';
                 stopBtn.disabled = true;
                 status = 'stopped';
+                activeCells.clear();
                 return;
             }
 
-            for (let y = 0; y < state.length; y++) {
-                const row = state[y];
-                for (let x = 0; x < row.length; x++) {
-                    const cellValue = getTransformedCell(x, y, state);
-                    transformedState[y][x] = cellValue;
-                    const cellEl = document.querySelector(`.cell-${x}-${y}`);
+            activeCells.forEach((cords) => {
+                const [x, y] = cords.split('-').map(Number);
+                cellsToCheck.add(`${x}-${y}`);
 
-                    if (cellValue) {
-                        cellEl.classList.add('active');
-                    } else {
-                        cellEl.classList.remove('active');
+                [
+                    [-1, -1],
+                    [0, -1],
+                    [1, -1],
+                    [1, 0],
+                    [1, 1],
+                    [0, 1],
+                    [-1, 1],
+                    [-1, 0],
+                ].forEach((cords) => {
+                    const [plusX, plusY] = cords;
+                    const xIndex = x + plusX;
+                    const yIndex = y + plusY;
+
+                    if (
+                        xIndex >= 0 &&
+                        xIndex < state[0].length &&
+                        yIndex >= 0 &&
+                        yIndex < state.length
+                    ) {
+                        cellsToCheck.add(`${xIndex}-${yIndex}`);
                     }
+                });
+            });
+
+            cellsToCheck.forEach((cell) => {
+                const [x, y] = cell.split('-').map(Number);
+                const cellValue = getTransformedCell(x, y, state);
+                transformedState[y][x] = cellValue;
+                const cellEl = document.querySelector(`.cell-${x}-${y}`);
+
+                if (cellValue) {
+                    activeCells.add(`${x}-${y}`);
+                    cellEl.classList.add('active');
+                } else {
+                    activeCells.delete(`${x}-${y}`);
+                    cellEl.classList.remove('active');
                 }
-            }
+            });
+
             state = JSON.parse(JSON.stringify(transformedState));
             transformedState = resetState(transformedState);
+            cellsToCheck.clear();
         }, 500);
     };
 
@@ -75,6 +109,7 @@ import { resetState, getTransformedCell } from './helpers/gridHelpers.js';
     const stop = () => {
         clearInterval(interval);
         state = resetState(state);
+        activeCells.clear();
 
         [...document.querySelectorAll('.grid-cell.active')].forEach((cell) =>
             cell.classList.remove('active')
